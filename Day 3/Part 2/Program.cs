@@ -29,6 +29,9 @@ namespace Part_2
             string input = "";
             int houseCount = 1;
             locStruct currentLocation;
+            locStruct santaLocation;
+            locStruct roboSantaLocation;
+
             currentLocation.col = 0;
             currentLocation.row = 0;
 
@@ -43,6 +46,8 @@ namespace Part_2
             {
                 input = line.ToString();
             }
+
+            bool santasTurn = true;
 
             foreach (char direction in input)
             {
