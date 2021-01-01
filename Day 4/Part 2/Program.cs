@@ -40,7 +40,7 @@ namespace Part_2
                 }
 
             }
-            //string hash = CreateMD5(input);
+            
             Console.WriteLine("");
             Console.WriteLine("The answer is: " + answer + ".");
 
