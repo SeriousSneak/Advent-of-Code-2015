@@ -1,12 +1,11 @@
 ﻿/* Advent of Code 2015
  * 
  * Programmer: Andrew Stobart
- * Date: January 4, 2021
+ * Date: January 6, 2021
  * 
- * Day 6 Part 1
+ * Day 6 Part 2
  *
  */
-
 
 using System;
 using System.Collections.Generic;
@@ -15,15 +14,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-
-namespace Part_1
+namespace Part_2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
-            int [,] lightGrid = new int[1000, 1000];
+            int[,] lightGrid = new int[1000, 1000];
 
             //coordinates are specified as [col, row]
             //0 will represent a light that is not lit, while 1 will represent a light that is lit. We will initialize the array to be filled with zeros
@@ -35,7 +32,7 @@ namespace Part_1
                 }
             }
 
-            var lines = File.ReadLines(@"C:\Users\astobart\OneDrive\Work\Code\Advent of Code\2015\Day 6\Part 1\input.txt");
+            var lines = File.ReadLines(@"C:\Users\astobart\OneDrive\Work\Code\Advent of Code\2015\Day 6\Part 2\input.txt");
 
 
             foreach (var line in lines)
@@ -45,7 +42,7 @@ namespace Part_1
                 int lastCol;
                 int lastRow;
 
-                string[] stringSeparators = new string[] { "through", " "};
+                string[] stringSeparators = new string[] { "through", " " };
                 string[] currentLine = line.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
 
                 if (currentLine[0] == "turn")
@@ -64,7 +61,7 @@ namespace Part_1
                         {
                             for (int row = firstRow; row <= lastRow; row++)
                             {
-                                    lightGrid[col, row] = 1;
+                                lightGrid[col, row]++;
                             }
                         }
                     }
@@ -74,7 +71,10 @@ namespace Part_1
                         {
                             for (int row = firstRow; row <= lastRow; row++)
                             {
-                                lightGrid[col, row] = 0;
+                                if (lightGrid[col, row] != 0)
+                                {
+                                    lightGrid[col, row]--;
+                                }
                             }
                         }
                     }
@@ -95,34 +95,24 @@ namespace Part_1
                     {
                         for (int row = firstRow; row <= lastRow; row++)
                         {
-                            if (lightGrid[col,row] == 0)
-                            {
-                                lightGrid[col,row] = 1;
-                            }
-                            else
-                            {
-                                lightGrid[col, row] = 0;
-                            }
+                            lightGrid[col, row] += 2;
                         }
                     }
                 }
             }
 
 
-            //count the number of lit lights
-            int litLights = 0;
+            //count the total brightness
+            int totalBrightness = 0;
 
             for (int col = 0; col < 1000; col++)
             {
                 for (int row = 0; row < 1000; row++)
                 {
-                    if (lightGrid[col, row] == 1)
-                    {
-                        litLights++;
-                    }
+                    totalBrightness += lightGrid[col, row];
                 }
             }
-            Console.WriteLine("There are " + litLights + " lights lit.");
+            Console.WriteLine("The total brightness is " + totalBrightness + ".");
 
             Console.WriteLine("");
             Console.WriteLine("Press any key to continue.");
