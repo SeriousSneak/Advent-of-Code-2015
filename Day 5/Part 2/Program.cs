@@ -1,7 +1,7 @@
 ﻿/* Advent of Code 2015
  * 
  * Programmer: Andrew Stobart
- * Date:
+ * Date: January 4, 2021
  * 
  * Day 5 Part 2
  *
@@ -20,7 +20,7 @@ namespace Part_2
     {
         static void Main(string[] args)
         {
-            var lines = File.ReadLines(@"D:\Advent of Code 2015\Advent-of-Code-2015\Day 5\Part 1\input.txt");
+            var lines = File.ReadLines(@"C:\Users\astobart\OneDrive\Work\Code\Advent of Code\2015\Day 5\Part 2\input.txt");
             int niceStrings = 0;
 
             foreach (var line in lines)
@@ -36,49 +36,44 @@ namespace Part_2
             Console.WriteLine("");
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
+
         }
 
         public static bool checkPairRepeat(string child)
         {
             char[] childArray = child.ToCharArray();
-            int vowelCount = 0;
 
-            foreach (char character in childArray)
+            for (int x = 0; x < (childArray.Length - 3); x++)
             {
-                if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u')
+                string firstPair = childArray[x].ToString() + childArray[x + 1].ToString();
+
+                for (int y = (x+2); y < (childArray.Length - 1); y++)
                 {
-                    vowelCount++;
-                }
-                if (vowelCount == 3)
-                {
-                    break;
+                    string secondPair = childArray[y].ToString() + childArray[y + 1].ToString();
+
+                    if (firstPair == secondPair)
+                    {
+                        return true;
+                    }
                 }
             }
 
-            if (vowelCount == 3)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static bool checkSingleRepeat(string child)
         {
             char[] childArray = child.ToCharArray();
-            bool check = false;
-
-            for (int x = 0; x < (childArray.Length - 1); x++)
+            
+            for (int x = 0; x < (childArray.Length - 2); x++)
             {
-                if (childArray[x] == childArray[x + 1])
+                if (childArray[x] == childArray[x + 2])
                 {
-                    check = true;
-                    break;
+                    return true;
                 }
             }
-            return check;
+
+            return false;
         }
 
     }
