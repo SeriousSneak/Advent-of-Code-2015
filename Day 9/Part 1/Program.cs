@@ -25,26 +25,33 @@ namespace Part_1
         {
             var lines = File.ReadLines(@"C:\Users\astobart\OneDrive\Work\Code\Advent of Code\2015\Day 9\Part 1\input.txt");
 
+            List<string> cityList = new List<string>();
+            string previousItem = "";
+
             foreach (var line in lines)
             {
-
+                string city = line.Substring(0, line.IndexOf(" "));
+                if (previousItem == "")
+                {
+                    cityList.Add(city);
+                    previousItem = city;
+                }
+                else if (previousItem != city)
+                {
+                    cityList.Add(city);
+                    previousItem = city;
+                }
             }
 
 
 
 
 
-
-
-
-
-
-
-
-
             //List<int> seq = new List<int>() { 1, 2, 3, 4 };
-            List<string> seq = new List<string>() { "Winnipeg", "Brandon", "Orlando", "Paris" };
-            foreach (var permu in Permutate(seq, seq.Count))
+            //List<string> seq = new List<string>() { "Winnipeg", "Brandon", "Orlando", "Paris" };
+
+            //foreach (var permu in Permutate(seq, seq.Count))
+            foreach (var permu in Permutate(cityList, cityList.Count))
             {
                 foreach (var i in permu)
                     Console.Write(i.ToString() + " ");
