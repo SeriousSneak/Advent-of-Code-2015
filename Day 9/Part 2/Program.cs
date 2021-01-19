@@ -3,7 +3,7 @@
  * Programmer: Andrew Stobart
  * Date: January 18, 2021
  * 
- * Day 9 Part 1
+ * Day 9 Part 2
  *
  */
 
@@ -17,7 +17,7 @@ using System.Collections;
 
 
 //I used code from https://www.codeproject.com/articles/43767/a-c-list-permutation-iterator to calculate all of the different permutations
-namespace Part_1
+namespace Part_2
 {
     class Program
     {
@@ -82,9 +82,9 @@ namespace Part_1
             //foreach (var permu in Permutate(seq, seq.Count))
 
             string[] stopOrder = new string[cityList.Count];
-            
+
             int totalDistance;
-            int shortestDistance = 0;
+            int longestDistance = 0;
             bool firstRun = true;
 
             foreach (var permu in Permutate(cityList, cityList.Count))
@@ -118,27 +118,25 @@ namespace Part_1
 
                 if (firstRun == true)
                 {
-                    shortestDistance = totalDistance;
+                    longestDistance = totalDistance;
                     firstRun = false;
                 }
                 else
                 {
-                    if (totalDistance < shortestDistance)
+                    if (totalDistance > longestDistance)
                     {
-                        shortestDistance = totalDistance;
+                        longestDistance = totalDistance;
                     }
                 }
-                
+
             }
 
-            Console.WriteLine("The shortest distance is " + shortestDistance + ".");
+            Console.WriteLine("The longest distance is " + longestDistance + ".");
 
             Console.WriteLine("");
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
-
-
 
         public static void RotateRight(IList sequence, int count)
         {
@@ -149,7 +147,7 @@ namespace Part_1
 
         public static IEnumerable<IList> Permutate(IList sequence, int count)
         {
-            if (count == 1) 
+            if (count == 1)
                 yield return sequence;
             else
             {
