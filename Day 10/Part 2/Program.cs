@@ -3,24 +3,22 @@
  * Programmer: Andrew Stobart
  * Date: February 17, 2021
  * 
- * Day 10 Part 1
+ * Day 10 Part 2
  *
- * Part 1 has us looping 40 times. This program took 3 minutes to loop 40 times.
- *   The total length is 492982.
- *   Start: 2021-02-18 12:56:28 UTC.
- *   Finish: 2021-02-18 12:59:04 UTC.
+ * Part 2 has us looping 50 times. This program took 9 hours to loop 50 times!!
+ *   The total length is 6989950.
+ *   Start: 2021-02-17 21:10:45 UTC.
+ *   Finish: 2021-02-18 06:23:08 UTC.
  *
  */
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Part_1
+namespace Part_2
 {
     class Program
     {
@@ -29,13 +27,13 @@ namespace Part_1
             string input = "1321131112";  //my puzzle input
 
             int loopNumber = 40;
-            
+
             string newString = "";
             DateTime start = DateTime.Now.ToUniversalTime();
 
-            for (int x = 0; x<loopNumber; x++)
+            for (int x = 0; x < loopNumber; x++)
             {
-                Console.WriteLine("Working on loop " + (x + 1) +".");
+                Console.WriteLine("Working on loop " + (x + 1) + ".");
 
                 for (int y = 0; y < input.Length; y++)
                 {
@@ -54,7 +52,7 @@ namespace Part_1
                             break;
                         }
                     }
-                    
+
                     newString += (numberOfDigits.ToString() + input[y]);
 
                     //adjust y so the next loop starts at the character after the repeating characters (if there were repeating characters)
@@ -71,7 +69,7 @@ namespace Part_1
 
             //Console.WriteLine("The string is " + newString + ".");
             Console.WriteLine("The total length is " + newString.Length + ".");
-            
+
             Console.WriteLine("Start: " + start + " UTC.");
             Console.WriteLine("Finish: " + DateTime.Now.ToUniversalTime() + " UTC.");
 
